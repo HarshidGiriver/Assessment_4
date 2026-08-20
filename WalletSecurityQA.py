@@ -19,7 +19,7 @@ def run_qa_test_suite():
     # ----------------------------------------------------
     # TEST 1: NORMAL TRANSACTION
     # ----------------------------------------------------
-    print("\n✔️ [TEST 1] Scenario: Normal Transaction Validation")
+    print("\n [TEST 1] Scenario: Normal Transaction Validation")
     res = wallet.withdraw("QA_01", "1111", 200.0)
     print(f"Result: {res}")
     assert "Successfully withdrew" in res, "Test 1 Failed"
