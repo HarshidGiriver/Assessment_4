@@ -26,7 +26,7 @@ def run_qa_test_suite():
     # ----------------------------------------------------
     # TEST 2: INSUFFICIENT BALANCE
     # ----------------------------------------------------
-    print("\n❌ [TEST 2] Scenario: Insufficient Balance Rejection")
+    print("\n [TEST 2] Scenario: Insufficient Balance Rejection")
     res = wallet.withdraw("QA_01", "1111", 50000.0)
     print(f"Result: {res}")
     assert "Insufficient funds" in res, "Test 2 Failed"
@@ -34,7 +34,7 @@ def run_qa_test_suite():
     # ----------------------------------------------------
     # TEST 3: DAILY LIMIT BREACH
     # ----------------------------------------------------
-    print("\n⚠️ [TEST 3] Scenario: Daily Limit Boundaries Enforcement")
+    print("\n [TEST 3] Scenario: Daily Limit Boundaries Enforcement")
     # Remaining daily limit window allowance is $5,000 - $200 spent = $4,800.
     res = wallet.withdraw("QA_01", "1111", 4900.0)
     print(f"Result: {res}")
@@ -43,7 +43,7 @@ def run_qa_test_suite():
     # ----------------------------------------------------
     # TEST 4: MULTIPLE FAILED PINS (LOCKOUT)
     # ----------------------------------------------------
-    print("\n🔒 [TEST 4] Scenario: Security Lockout on Multiple Failed PIN entries")
+    print("\n [TEST 4] Scenario: Security Lockout on Multiple Failed PIN entries")
     print(wallet.verify_balance("QA_01", "9999")) # Fail 1
     print(wallet.verify_balance("QA_01", "8888")) # Fail 2
     res = wallet.verify_balance("QA_01", "7777")   # Fail 3 -> Locks account
@@ -58,7 +58,7 @@ def run_qa_test_suite():
     # ----------------------------------------------------
     # TEST 5: SUSPICIOUS TRANSACTION DETECTION
     # ----------------------------------------------------
-    print("\n🔎 [TEST 5] Scenario: Anti-Fraud Rules Activation")
+    print("\n [TEST 5] Scenario: Anti-Fraud Rules Activation")
     wallet.create_account("QA_03", "3333", "Fraud Target Account", daily_limit=10000.0)
     wallet.deposit("QA_03", 50000.0)
     
@@ -70,7 +70,7 @@ def run_qa_test_suite():
     # ----------------------------------------------------
     # TEST 6: DUPLICATE TRANSACTION PREVENTION
     # ----------------------------------------------------
-    print("\n🔄 [TEST 6] Scenario: Anti-Replay / Duplicate Detection Window")
+    print("\n [TEST 6] Scenario: Anti-Replay / Duplicate Detection Window")
     wallet.create_account("QA_04", "4444", "Duplicate Tester Account")
     wallet.deposit("QA_04", 1000.0)
     
@@ -83,7 +83,7 @@ def run_qa_test_suite():
     # ----------------------------------------------------
     # TEST 7: NEGATIVE AMOUNT REJECTION
     # ----------------------------------------------------
-    print("\n🚫 [TEST 7] Scenario: Sanity Input Bounds Check (Negative Outflows)")
+    print("\n [TEST 7] Scenario: Sanity Input Bounds Check (Negative Outflows)")
     res = wallet.deposit("QA_02", -500.0)
     print(f"Result: {res}")
     assert "must be positive" in res, "Test 7 Failed"
@@ -91,7 +91,7 @@ def run_qa_test_suite():
     # ----------------------------------------------------
     # TEST 8: CONCURRENT TRANSACTIONS (RACE CONDITIONS)
     # ----------------------------------------------------
-    print("\n⚡ [TEST 8] Scenario: Concurrency Race Condition Verification")
+    print("\n [TEST 8] Scenario: Concurrency Race Condition Verification")
     wallet.create_account("QA_05", "5555", "Concurrency Test Account")
     wallet.deposit("QA_05", 500.0)  # Total balance pool: $500
     
@@ -116,7 +116,7 @@ def run_qa_test_suite():
     print("Final Target Balance Check:", wallet.verify_balance("QA_05", "5555"))
 
     print("\n" + "=" * 70)
-    print("          🌟 ALL 8 QA INTEGRITY TESTS PASSED SUCCESSFULLY 🌟          ")
+    print("           ALL 8 QA INTEGRITY TESTS PASSED SUCCESSFULLY           ")
     print("=" * 70)
 
 
